@@ -5,7 +5,7 @@ set -e
 
 echo -e "\n ===== Step 1. Building $1 =====\n\n"
 
-#mvn clean install -f $1/pom.xml
+mvn clean install -f $1/pom.xml
 
 echo -e "\n\n ===== Step 2. Copying $1 =====\n"
 
@@ -18,7 +18,7 @@ else
 fi
 
 echo -e "\n Sanity Check : Components to be copied"
-find $1/target/ -regex .*-.*\.jar | xargs -i echo " # . " {}
+find $1/target/ -maxdepth 1 -regex .*-.*\.jar | xargs -i echo " # . " {}
 
-find $1/target/ -regex .*-.*\.jar | xargs -i cp {} $patchDir
+find $1/target/ -maxdepth 1 -regex .*-.*\.jar| xargs -i cp {} $patchDir
 echo -e "\n Done !\n"
