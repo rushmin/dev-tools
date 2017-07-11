@@ -1,4 +1,10 @@
 
+if [ $# -eq 0 ]
+  then
+    printf "Usage : wso2-dev-patch [component-path] [wso2-server-root]\n"
+    exit 1
+fi
+
 patchDir="$2/repository/components/patches/patch9999/"
 
 set -e
