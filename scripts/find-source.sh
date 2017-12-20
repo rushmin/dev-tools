@@ -60,6 +60,7 @@ tryWithParent()
 if [ $# -eq 0 ]
   then
     printf "Usage : ./find-source <jar-file-location>\n"
+    printf "Dependencies : wget\n"
     exit 1
 fi
 
