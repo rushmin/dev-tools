@@ -24,7 +24,7 @@ else
 fi
 
 echo -e "\n Sanity Check : Components to be copied"
-find $1/target/ -maxdepth 1 -regex .*-.*\.jar | xargs -i echo " # . " {}
+find $1/target/ -maxdepth 1 -regex .*-.*\.jar | xargs -I {} basename {}
 
-find $1/target/ -maxdepth 1 -regex .*-.*\.jar| xargs -i cp {} $patchDir
+find $1/target/ -maxdepth 1 -regex .*-.*\.jar| xargs -I {} cp {} $patchDir
 echo -e "\n Done !\n"
