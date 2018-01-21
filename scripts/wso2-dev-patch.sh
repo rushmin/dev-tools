@@ -5,15 +5,25 @@ if [ $# -eq 0 ]
     exit 1
 fi
 
-patchDir="$2/repository/components/patches/patch9999/"
+componentHome=$1
+shift
+serverRoot=$1
+shift
+
+if [ -z "$serverRoot" ]
+  then
+    serverRoot=.
+fi
+
+patchDir="$serverRoot/repository/components/patches/patch9999/"
 
 set -e
 
-echo -e "\n ===== Step 1. Building $1 =====\n\n"
+echo -e "\n ===== Step 1. Building $componentHome =====\n\n"
 
-mvn clean install -f $1/pom.xml
+mvn clean install -f $componentHome/pom.xml "$@"
 
-echo -e "\n\n ===== Step 2. Copying $1 =====\n"
+echo -e "\n\n ===== Step 2. Copying $componentHome =====\n"
 
 if [ -e "$patchDir" ]
 then
@@ -24,7 +34,7 @@ else
 fi
 
 echo -e "\n Sanity Check : Components to be copied"
-find $1/target/ -maxdepth 1 -regex .*-.*\.jar | xargs -I {} basename {}
+find $componentHome/target/ -maxdepth 1 -regex .*-.*\.jar | xargs -I {} basename {}
 
-find $1/target/ -maxdepth 1 -regex .*-.*\.jar| xargs -I {} cp {} $patchDir
+find $componentHome/target/ -maxdepth 1 -regex .*-.*\.jar| xargs -I {} cp {} $patchDir
 echo -e "\n Done !\n"
