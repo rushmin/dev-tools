@@ -1,9 +1,16 @@
 
 if [ $# -eq 0 ]
   then
-    printf "Usage : find-jar [location] [class-name] [See \$3 below]\n"
-    printf "Implentation : find \$1 -regex .*\.jar | xargs -n 1 unzip -l | grep -B \$3 \$2 | grep Archive:.*\.jar\n\n"
-    exit 1 
+    printf "\nUsage : ./find-jar.sh [search-location] [class-name]\n"
+    printf "\nExample : ./find-jar.sh repository/components/plugins/ IdentityMgtEventListener\n\n"
+    exit 1
 fi
 
-find $1 -regex .*\.jar | xargs -n 1 unzip -l | grep -B $3 $2 | grep Archive:.*\.jar
+# For each jar file in the given location ...
+for f in $1/*.jar;
+ # Check whether the given class file is there.
+ do unzip -l $f | grep $2 &> /dev/null
+  if [ $? == 0 ]; then
+    printf "\t$f\n"
+  fi
+done
