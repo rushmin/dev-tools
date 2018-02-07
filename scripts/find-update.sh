@@ -1,11 +1,15 @@
 
 if [ $# -eq 0 ]
  then
-   printf "\nUsage : find-update <update-location> <jar-name> [product-home]\n"
-   printf "\nArguements\n"
-   printf "\tupdate-location - Location where the update archive files reside. e.g. ~/.wum-wso2/updates/wilkes/4.4.0\n"
-   printf "\tjar-name - JAR file name to be looked-up for\n"
-   printf "\tproduct-home - Home directory of the WSO2 product. When this argument is present the searched updates will be filtered against the updates in the product.\n\n"
+   printf "\nPrints the WSO2 updates which contain the given JAR file. The local WUM updates repo is used for searching.\n"
+   printf "The local WUM updates repo is used for searching.\n"
+   printf "If a WSO2 product home is given, the updates are further filtered and prints the updates in the given product local copy which contains the given JAR file.\n"
+   printf "\nUsage : \n\t./find-update.sh <update-location> <jar-name> [product-home]\n"
+   printf "\nArguements :\n"
+   printf "\t• update-location - Location where the update archive files reside. e.g. ~/.wum-wso2/updates/wilkes/4.4.0\n"
+   printf "\t• jar-name - JAR file name to be looked-up for\n"
+   printf "\t• product-home (optional) - Home directory of the WSO2 product. When this argument is present the searched updates will be filtered against the updates in the product.\n"
+   printf "\nExample : \n\t./find-update.sh ~/.wum-wso2/updates/wilkes/4.4.0/ org.wso2.carbon.user.mgt_5.7.5.jar ~/wso2is-5.3.0\n\n"
    exit 1
 fi
 
