@@ -8,16 +8,16 @@ The tools are ...
 
 **Story**
 
-As a developer I need to find the exact source code (repo/tag) of a JAR file inside a WSO2 product to troubleshoot issues. 
+As a developer I need to find the exact source code (repo/tag) of a JAR file inside a WSO2 product to troubleshoot issues.
 
 Most of the JAR files shipped with WSO2 products are released using the [Maven release plugin](http://maven.apache.org/maven-release/maven-release-plugin/). This makes sure the POM file of the JAR file contains the SCM information. The script constructs the source repo URL with the SCM information in the POM files. The search extends to the parent POM files when needed.
 
 **Usage**
-find-source.sh <jar-file-location>
+find-source.sh `<jar-file-location`>
 
-**Example** 
+**Example**
 ```
-$ find-source.sh repository/components/plugins/org.wso2.carbon.identity.oidc.dcr_6.0.14.jar 
+$ find-source.sh repository/components/plugins/org.wso2.carbon.identity.oidc.dcr_6.0.14.jar
 XPath set is empty
 DEBUG : Couldn't find SCM information in the pom file of the JAR. Trying the parent pom.
 DEBUG : POM URL : https://maven.wso2.org/nexus/content/groups/wso2-public/org/wso2/carbon/identity/inbound/auth/oauth2/identity-inbound-auth-oauth/6.0.14/identity-inbound-auth-oauth-6.0.14.pom
@@ -30,12 +30,12 @@ Source Location - https://github.com/wso2-extensions/identity-inbound-auth-oauth
 **Story**
 As a developer I need to find the latest WUM update which contains a given jar file to see the latest fixes which the JAR file contains.
 
-**Usage** 
-find-update.sh <update-location> <jar-name> [product-home]
+**Usage**
+find-update.sh `<update-location`> `<jar-name`> [product-home]
 
 **Arguements**
 
--- update-location 
+-- update-location
 Location where the update archive files reside. e.g. ~/.wum3/updates/wilkes/4.4.0/
 
 -- jar-name
@@ -55,5 +55,20 @@ FOUND - /Users/rushmin/.wum3/updates/wilkes/4.4.0//WSO2-CARBON-UPDATE-4.4.0-1091
 DEBUG : Filtered - /Users/rushmin/.wum3/updates/wilkes/4.4.0//WSO2-CARBON-UPDATE-4.4.0-1133.zip
 ```
 
+#### 3) load-test-runner.sh - A wrapper to Jmeter which helps to organize the tests results when it comes to more than one rest rounds
 
+**Story**
 
+As a developer I need to store the results of a load test in a trackable way along with a snapshot of the script which was used to run the test.
+
+**Usage**
+run-load-test.sh `<label`> `<script-file`> `<properties-file`> `<reports-root-directory`>
+
+**Example**
+```
+$ load-test-runner.sh "is-530-with-fix" "client-credentials-grant/client-credential.jmx" "client-credentials-grant/is530-load-test.properties" "../reports"
+
+Started : 'is-530-with-fix (client-credentials-grant/client-credential.jmx)' with the properties 'client-credentials-grant/is530-load-test.properties'
+
+Reports are stored in  ../reports/1552114625
+```
