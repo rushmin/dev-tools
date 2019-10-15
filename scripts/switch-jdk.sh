@@ -1,3 +1,1 @@
-cd /wso2dev/env/sdk/jdk
-rm active_jdk
-ln -s jdk$1  active_jdk
+export JAVA_HOME=`/usr/libexec/java_home -v $1`
