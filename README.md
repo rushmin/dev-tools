@@ -72,3 +72,19 @@ Started : 'is-530-with-fix (client-credentials-grant/client-credential.jmx)' wit
 
 Reports are stored in  ../reports/1552114625
 ```
+
+#### 3) apply-patches.sh - Script to download and apply WSO2 product patches from the internal SVN server.
+
+**Story**
+
+As an Engineer in WSO2, I need to download a set of patches for a particular WSO2 product from our internal SVN and extract those ZIP files to `<PRODUCT_HOME>/repository/component/patches` directory.
+
+**Usage**
+Copy the script to your `<PRODUCT_HOME>` directory and run the script.
+
+apply-patches.sh `<WSO2_EMAIL>` `<WSO2_PASSWORD>` `<PRODUCT_PLATFORM_VERSION_4.2.0|4.4.0>` `<SPACE_SEPARATED_PATCH_LIST>`
+
+**Example** 
+```
+$ apply-patches.sh john@wso2.com Pa$$w0Rd 4.4.0 patch0044 patch0047 patch0073  patch0079
+```
