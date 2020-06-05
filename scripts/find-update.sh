@@ -20,7 +20,9 @@ regex="$1.*WSO2-CARBON-UPDATE-4.4.0-([0-9]{4})\.zip"
 for f in $1/*.zip;
  # Check whether the given jar file is there.
  do unzip -l $f | grep $2 &> /dev/null
-  if [ $? == 0 ]; then
+  if [ $? -eq 0 ]
+  then
+    echo 'DEBUG :  '$2' is available in '$f
     if ! [ -z "$3" ] # If the product home is given, filter the update against the updates in the product.
     then
       if [[ $f =~ $regex ]]
@@ -30,7 +32,7 @@ for f in $1/*.zip;
           for report in $3/updates/wum/*;
           do
             if grep -q "\- \"$updateNumber\"" "$report"; then
-              echo 'FOUND - '$f
+              echo 'INFO : FOUND - '$f
               found=true
               break
             fi
@@ -40,7 +42,7 @@ for f in $1/*.zip;
           fi
       fi
     else
-        echo 'FOUND - '$f
+        echo 'INFO : FOUND - '$f
     fi
   fi
 done
